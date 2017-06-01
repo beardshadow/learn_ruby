@@ -24,7 +24,14 @@ end
 #	string.split(' ').map{ |word| little_words.include?(word) && (string.split(' ')[0] != word) ? word : word.capitalize }.join(' ')
 #end
 
-def titleize(string)
-	little_words = ['a', 'an', 'and', 'over', 'in', 'on','of','to','the']
-	string.split(' ').map { |word| (word != string.split(' ')[0]) && little_words.include?(word) ? word : word.capitalize}.join(' ')
+def titleize(s)
+	words = s.split.map do |word|
+    if %w(the and over).include?(word)
+      word
+    else
+      word.capitalize
+    end
+  end
+  words.first.capitalize!
+  words.join(" ")
 end
